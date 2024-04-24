@@ -1,0 +1,13 @@
+if [ $# = 1 ]; then
+	if [[ $1 = "-al" || $1 = "-la" ]]; then
+	ls -al
+	elif [[ $1 = "-l" ]]; then
+	ls -l
+	elif [[ $1 = "-a" ]]; then
+	ls -a
+	fi
+else
+	if [[ $@ =~ "-l" && $@ =~ "-a" ]]; then
+	ls -al
+	fi
+fi

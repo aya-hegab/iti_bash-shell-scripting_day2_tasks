@@ -1,0 +1,71 @@
+m='-'
+if [[ $# > 2 ]]; then
+	for arg in $*
+	do
+	if [[ $arg = '-a' ]]; then
+	echo "yes a"
+	m+='a'
+	elif [[ $arg = '-l' ]]; then
+	echo "yes l"
+	m+='l'
+	elif [[ $arg = '-i' ]]; then
+	echo "yes i"
+	m+='i'
+	elif [[ $arg = '-d' ]]; then
+	echo "yes d"
+	m+='d'
+	else
+	echo "no"
+	fi
+	done
+	last=$arg
+	
+	if [[ -d $last ]]; then
+	echo "dir"
+	ls $m $last
+	else
+	echo "not dir"
+	ls $m
+	fi
+elif [[ $# = 1 || $# = 2 ]]; then
+	str=$1
+	n=${#str}
+	for ((x = 0 ; x < $n ; x++)); do
+	  if [[ $1 =~ "a" ]]; then
+	  	if [[ $m =~ "a" ]]; then
+	  	b=-1
+	  	else
+	  	m+='a'
+		fi
+
+	  fi
+	  if [[ $1 =~ "l" ]]; then
+		if [[ $m =~ "l" ]]; then
+	  	b=-1
+	  	else
+	  	m+='l'
+		fi
+	  fi
+	  if [[ $1 =~ "i" ]]; then
+		if [[ $m =~ "i" ]]; then
+	  	b=-1
+	  	else
+	  	m+='i'
+		fi
+	  fi
+	  if [[ $1 =~ "-d" ]]; then
+		if [[ $m =~ "d" ]]; then
+	  	b=-1
+	  	else
+	  	m+='d'
+		fi
+	  fi
+	done
+	if [[ -d $last ]]; then
+	echo "dir"
+	ls $m $last
+	else
+	echo "not dir"
+	ls $m 
+	fi
+fi
